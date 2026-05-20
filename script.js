@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
   const revealTargets = document.querySelectorAll(
-    ".content-title, .intro, .about-box, .section-header, .timeline-item, .map-container, .contact-form"
+    ".content-title, .intro, .about-box, .resume-hero, .resume-focus-card, .resume-panel-heading, .resume-item, .publication-item, .resume-panel.compact, .map-container, .contact-form"
   );
 
   if (revealTargets.length === 0) return;
@@ -248,10 +248,6 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   const sidebar = document.querySelector(".sidebar");
   const container = document.querySelector(".container");
-  const timelineLine = document.querySelector(".timeline-line");
-  const timelineItems = document.querySelectorAll(".timeline-item");
-  const timelineDots = document.querySelectorAll(".timeline-dot");
-  const sectionIcon = document.querySelector(".section-icon");
 
   function adjustContainerPosition() {
     if (!sidebar || !container) return;
@@ -273,45 +269,12 @@ document.addEventListener("DOMContentLoaded", function () {
     container.style.minHeight = `${sidebarHeight}px`;
   }
 
-  function adjustTimelineHeight() {
-    if (
-      !timelineLine ||
-      timelineItems.length === 0 ||
-      timelineDots.length === 0 ||
-      !sectionIcon
-    )
-      return;
-
-    const iconHeight = sectionIcon.offsetHeight;
-    const iconOffset = iconHeight / 2;
-
-    const firstItem = timelineItems[0];
-    const lastItem = timelineItems[timelineItems.length - 1];
-    const lastDot = timelineDots[timelineDots.length - 1];
-
-    const firstItemOffset = firstItem.offsetTop + firstItem.offsetHeight / 2;
-    const lastItemOffset = lastDot.offsetTop + lastDot.offsetHeight / 2;
-
-    timelineLine.style.top = `${firstItemOffset - iconOffset}px`;
-    timelineLine.style.height = `${lastItemOffset - firstItemOffset}px`;
-
-    timelineDots.forEach((dot, index) => {
-      const itemTitle = timelineItems[index].querySelector(".timeline-title");
-      if (itemTitle) {
-        const titleOffset = itemTitle.offsetTop + itemTitle.offsetHeight / 2;
-        dot.style.top = `${titleOffset}px`;
-      }
-    });
-  }
-
   setTimeout(() => {
     adjustContainerPosition();
-    adjustTimelineHeight();
   }, 100);
 
   window.addEventListener("resize", () => {
     adjustContainerPosition();
-    adjustTimelineHeight();
   });
 });
 
