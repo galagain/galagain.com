@@ -433,44 +433,89 @@
         </section>
 
         <section class="contact">
-          <div class="map-container">
-            <div id="custom-map"></div>
-          </div>
-
-          <div class="contact-form">
-            <h3 class="form-title">Contact Form</h3>
-            <form id="contact-form">
-              <div class="form-group">
-                <input
-                  type="text"
-                  name="from_name"
-                  placeholder="Full name"
-                  required
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email Address"
-                  required
-                />
+          <div class="contact-grid">
+            <div class="contact-panel">
+              <div class="contact-map" aria-hidden="true">
+                <span class="map-pin pin-paris"></span>
+                <span class="map-pin pin-palaiseau"></span>
+                <span class="map-route"></span>
               </div>
-              <textarea
-                name="message"
-                placeholder="Your message"
-                rows="5"
-                required
-              ></textarea>
-              <button type="submit" class="btn">Send Message</button>
-            </form>
+              <div class="contact-details">
+                <div class="contact-detail">
+                  <i class="fas fa-location-dot"></i>
+                  <div>
+                    <span class="contact-label">Location</span>
+                    <span class="contact-value">Paris, France</span>
+                  </div>
+                </div>
+                <a class="contact-detail" href="mailto:calvin@galagain.com">
+                  <i class="fas fa-envelope"></i>
+                  <div>
+                    <span class="contact-label">Email</span>
+                    <span class="contact-value">calvin@galagain.com</span>
+                  </div>
+                </a>
+                <div class="contact-detail">
+                  <i class="fas fa-microchip"></i>
+                  <div>
+                    <span class="contact-label">Focus</span>
+                    <span class="contact-value">Robotics, SLAM, embedded AI</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-form">
+              <div class="form-heading">
+                <h3 class="form-title">Let's Talk</h3>
+                <p>
+                  Reach out for robotics, embedded AI, research collaborations,
+                  or engineering opportunities.
+                </p>
+              </div>
+              <form id="contact-form">
+                <div class="form-group">
+                  <label class="form-field">
+                    <span>Name</span>
+                    <input
+                      type="text"
+                      name="from_name"
+                      placeholder="Full name"
+                      autocomplete="name"
+                      required
+                    />
+                  </label>
+                  <label class="form-field">
+                    <span>Email</span>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email address"
+                      autocomplete="email"
+                      required
+                    />
+                  </label>
+                </div>
+                <label class="form-field">
+                  <span>Message</span>
+                  <textarea
+                    name="message"
+                    placeholder="What should we build, test, or discuss?"
+                    rows="6"
+                    required
+                  ></textarea>
+                </label>
+                <button type="submit" class="btn">
+                  <span>Send Message</span>
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+                <p class="form-status" aria-live="polite"></p>
+              </form>
+            </div>
           </div>
         </section>
       </main>
     </div>
     <script src="script.js"></script>
-    <script
-      async
-      defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAurltvOVfxtM3OlydzYnsMcaoEdO-Z1Ac&callback=initMap"
-    ></script>
   </body>
 </html>

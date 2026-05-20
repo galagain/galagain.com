@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
   const revealTargets = document.querySelectorAll(
-    ".content-title, .intro, .about-box, .section-header, .timeline-item, .map-container, .contact-form"
+    ".content-title, .intro, .about-box, .section-header, .timeline-item, .contact-panel, .contact-detail, .contact-form"
   );
 
   if (revealTargets.length === 0) return;
@@ -303,107 +303,56 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-function initMap() {
-  const contentColor = getComputedStyle(document.documentElement)
-    .getPropertyValue("--content-color")
-    .trim();
-  const boxColor = getComputedStyle(document.documentElement)
-    .getPropertyValue("--box-color")
-    .trim();
-
-  const location1 = { lat: 48.71230833667956, lng: 2.1951999169797127 }; // Nano-INNOV
-  const location2 = { lat: 48.71075248378351, lng: 2.2180446541432963 }; // ENSTA
-
-  const map = new google.maps.Map(document.getElementById("custom-map"), {
-    zoom: 14,
-    center: location1,
-    disableDefaultUI: true,
-    styles: [
-      {
-        featureType: "all",
-        elementType: "labels",
-        stylers: [{ visibility: "off" }],
-      },
-      {
-        featureType: "all",
-        elementType: "geometry",
-        stylers: [{ color: contentColor }],
-      },
-      {
-        featureType: "road",
-        elementType: "geometry",
-        stylers: [{ color: boxColor }],
-      },
-      {
-        featureType: "water",
-        elementType: "geometry",
-        stylers: [{ color: boxColor }],
-      },
-      {
-        featureType: "transit",
-        elementType: "geometry",
-        stylers: [{ color: boxColor }],
-      },
-    ],
-  });
-
-  const bounds = new google.maps.LatLngBounds();
-  bounds.extend(location1);
-  bounds.extend(location2);
-  map.fitBounds(bounds);
-
-  setTimeout(() => {
-    const accentColor = getComputedStyle(document.documentElement)
-      .getPropertyValue("--accent-color")
-      .trim();
-
-    const accentColorEncoded = encodeURIComponent(accentColor);
-
-    const customIcon = {
-      url: `data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='40' height='40' fill='${accentColorEncoded}'><path d='M12 2C8.13 2 5 5.13 5 9c0 4.25 5 11 7 13 2-2 7-8.75 7-13 0-3.87-3.13-7-7-7z'/></svg>`,
-      scaledSize: new google.maps.Size(30, 30),
-    };
-
-    new google.maps.Marker({
-      position: location1,
-      map: map,
-      icon: customIcon,
-    });
-
-    new google.maps.Marker({
-      position: location2,
-      map: map,
-      icon: customIcon,
-    });
-  }, 500);
-}
-
 document.addEventListener("DOMContentLoaded", function () {
+  const contactForm = document.getElementById("contact-form");
+  const statusMessage = document.querySelector(".form-status");
+  const submitButton = contactForm?.querySelector(".btn");
+
+  if (!contactForm || !window.emailjs) return;
+
   emailjs.init("4R081FyWEBktitRy0");
 
-  document
-    .getElementById("contact-form")
-    .addEventListener("submit", function (event) {
-      event.preventDefault();
+  function setFormStatus(message, type) {
+    if (!statusMessage) return;
 
-      let formData = {
-        from_name: this.from_name.value,
-        to_name: "Calvin",
-        email: this.email.value,
-        message: this.message.value,
-      };
+    statusMessage.textContent = message;
+    statusMessage.dataset.status = type;
+  }
 
-      emailjs
-        .send("service_wbzgq5x", "template_6ftikvk", formData)
-        .then(() => {
-          alert("Email sent successfully!");
-          this.reset();
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          alert("Failed to send. Check your EmailJS configuration.");
-        });
-    });
+  contactForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const formData = {
+      from_name: this.from_name.value,
+      to_name: "Calvin",
+      email: this.email.value,
+      message: this.message.value,
+    };
+
+    if (submitButton) {
+      submitButton.disabled = true;
+    }
+    setFormStatus("Sending message...", "loading");
+
+    emailjs
+      .send("service_wbzgq5x", "template_6ftikvk", formData)
+      .then(() => {
+        setFormStatus("Message sent. I will reply soon.", "success");
+        this.reset();
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setFormStatus(
+          "Message could not be sent. Please email me directly.",
+          "error"
+        );
+      })
+      .finally(() => {
+        if (submitButton) {
+          submitButton.disabled = false;
+        }
+      });
+  });
 });
 
 class Pixel {
