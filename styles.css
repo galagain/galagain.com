@@ -56,6 +56,21 @@ body {
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.profile:hover,
+.profile:focus-visible {
+  border-color: var(--accent-color);
+}
+
+.profile:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.25);
 }
 
 .profile-name {
@@ -632,92 +647,10 @@ pixel-container {
   z-index: -1;
 }
 
-.project-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-  gap: 20px;
-}
-
-.card {
-  background: var(--background-color);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  max-width: 400px;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
-}
-
-.card::before {
-  content: "";
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, var(--accent-color) 10%, transparent 70%);
-  opacity: 0.1;
-  pointer-events: none;
-  bottom: 10px;
-  left: 10px;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  font-size: 0.9rem;
-  color: var(--text-color);
-}
-
-.card-body h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.card-body p {
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.card-footer {
-  margin-top: 15px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  padding-top: 10px;
-}
-
-.btn-read-more {
-  background: var(--accent-color);
-  color: var(--text-color);
-  border-radius: 2em;
-  padding: 0.625rem 1.5rem;
-  text-decoration: none;
-  display: inline-block;
-  font-weight: bold;
-}
-
-.btn-read-more:hover {
-  background: var(--text-color);
-  color: var(--accent-color);
-}
-
 .profile-img {
-  width: auto;
+  width: 90%;
   height: 90%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: var(--border-radius);
   display: block;
   margin: 0 auto;

@@ -2,7 +2,69 @@ document.addEventListener("DOMContentLoaded", function () {
   const navLinks = document.querySelectorAll(".navbar nav ul li a");
   const contentTitle = document.querySelector(".content-title h1");
   const sections = document.querySelectorAll("section");
+  const profile = document.querySelector(".profile");
   const profileImage = document.querySelector(".profile-img");
+
+  function spinAvatar() {
+    if (!profileImage) return;
+
+    profileImage.classList.remove("nav-spin");
+    void profileImage.offsetWidth;
+    profileImage.classList.add("nav-spin");
+  }
+
+  function setAvatar(isActive) {
+    if (!profileImage) return;
+
+    const defaultAvatar = profileImage.dataset.defaultAvatar;
+    const activeAvatar = profileImage.dataset.activeAvatar;
+    profileImage.src = isActive ? activeAvatar : defaultAvatar;
+
+    if (profile) {
+      profile.setAttribute("aria-pressed", String(isActive));
+    }
+  }
+
+  function getSavedAvatar() {
+    try {
+      return localStorage.getItem("selectedAvatar");
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function saveAvatar(avatarPath) {
+    try {
+      localStorage.setItem("selectedAvatar", avatarPath);
+    } catch (error) {
+      return;
+    }
+  }
+
+  if (profile && profileImage) {
+    const defaultAvatar = profileImage.dataset.defaultAvatar;
+    const activeAvatar = profileImage.dataset.activeAvatar;
+    const savedAvatar = getSavedAvatar();
+    const isActiveAvatar = savedAvatar === activeAvatar;
+
+    new Image().src = defaultAvatar;
+    new Image().src = activeAvatar;
+    setAvatar(isActiveAvatar);
+
+    function toggleAvatar() {
+      const nextIsActive = profileImage.src.endsWith(defaultAvatar);
+      setAvatar(nextIsActive);
+      saveAvatar(nextIsActive ? activeAvatar : defaultAvatar);
+      spinAvatar();
+    }
+
+    profile.addEventListener("click", toggleAvatar);
+    profile.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      toggleAvatar();
+    });
+  }
 
   sections.forEach((section) => section.classList.add("hidden"));
   document.querySelector(".about").classList.remove("hidden");
@@ -24,11 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.dispatchEvent(new Event("refreshReveal"));
       }
 
-      if (profileImage) {
-        profileImage.classList.remove("nav-spin");
-        void profileImage.offsetWidth;
-        profileImage.classList.add("nav-spin");
-      }
+      spinAvatar();
 
       navLinks.forEach((nav) => nav.classList.remove("active"));
       this.classList.add("active");

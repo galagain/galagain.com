@@ -22,8 +22,20 @@
     <pixel-container></pixel-container>
     <div class="container">
       <aside class="sidebar">
-        <div class="profile">
-          <img src="data/photo.png" class="profile-img" />
+        <div
+          class="profile"
+          role="button"
+          tabindex="0"
+          aria-label="Change avatar"
+          aria-pressed="false"
+        >
+          <img
+            src="data/avatar.png"
+            data-default-avatar="data/avatar.png"
+            data-active-avatar="data/avatar_oeil.png"
+            class="profile-img"
+            alt="Calvin Galagain avatar"
+          />
         </div>
         <div class="profile-name">
           Calvin <span class="first-name">Galagain</span>
@@ -409,80 +421,6 @@
             </li>
           </ol>
         </section>
-
-        <!-- <section class="project">
-          <div class="project-container">
-            <div class="card">
-              <div class="card-header">
-                <div class="date">Feb, 2024</div>
-              </div>
-              <div class="card-body">
-                <h3>Myrmeciinae</h3>
-                <p>
-                  This project is a sports application that tracks strength
-                  training performance while also serving as a social network.
-                </p>
-              </div>
-              <div class="card-footer">
-                <a class="btn-read-more" target="_blank">in coming ...</a>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-header">
-                <div class="date">Feb, 2024</div>
-              </div>
-              <div class="card-body">
-                <h3>Formicinae</h3>
-                <p>
-                  This project involves rebuilding a SLAM system from scratch in
-                  C++ for localization and mapping.
-                </p>
-              </div>
-              <div class="card-footer">
-                <a class="btn-read-more" target="_blank">in coming ...</a>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-header">
-                <div class="date">Feb, 2024</div>
-              </div>
-              <div class="card-body">
-                <h3>Dolichoderinae</h3>
-                <p>
-                  This project focuses on visualizing and generating a
-                  state-of-the-art review based on research domains.
-                </p>
-              </div>
-              <div class="card-footer">
-                <a class="btn-read-more" target="_blank">in coming ...</a>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-header">
-                <div class="date">Feb, 2024</div>
-              </div>
-              <div class="card-body">
-                <h3>Aneuretinae</h3>
-                <p>
-                  This project aims to minimize the total cost of purchasing
-                  Pokemon cards by optimizing both card prices and shipping
-                  costs across multiple vendors.
-                </p>
-              </div>
-              <div class="card-footer">
-                <a
-                  href="data/pokemon_optimization.pdf"
-                  class="btn-read-more"
-                  target="_blank"
-                  >Read more</a
-                >
-              </div>
-            </div>
-          </div>
-        </section> -->
 
         <section class="contact">
           <div class="map-container">
