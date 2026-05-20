@@ -435,7 +435,13 @@
         <section class="contact">
           <div class="contact-grid">
             <div class="map-container">
-              <div id="custom-map"></div>
+              <div id="custom-map" aria-hidden="true">
+                <span class="map-road road-primary"></span>
+                <span class="map-road road-secondary"></span>
+                <span class="map-road road-tertiary"></span>
+                <span class="map-point point-paris"></span>
+                <span class="map-point point-palaiseau"></span>
+              </div>
             </div>
 
             <div class="contact-form">
@@ -490,10 +496,5 @@
       </main>
     </div>
     <script src="script.js"></script>
-    <script
-      async
-      defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAurltvOVfxtM3OlydzYnsMcaoEdO-Z1Ac&callback=initMap"
-    ></script>
   </body>
 </html>
