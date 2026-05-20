@@ -444,6 +444,14 @@ body {
   border-radius: var(--border-radius);
 }
 
+#custom-map .gm-style-cc,
+#custom-map .gmnoprint,
+#custom-map a[href^="https://maps.google.com/maps"],
+#custom-map a[href^="https://www.google.com/maps"],
+#custom-map a[href^="https://www.google.com/intl"] {
+  display: none !important;
+}
+
 .contact-form {
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent 38%),
