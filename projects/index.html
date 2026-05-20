@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mes projets - @galagain</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <header class="page-header">
+        <div class="container">
+            <h1 class="page-title">Mes projets GitHub</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="repo-grid" class="grid"></div>
+    </main>
+
+    <template id="repo-card">
+        <article class="card">
+            <div class="card-title">
+                <img class="avatar" alt="avatar" width="28" height="28" />
+                <a class="repo-link" target="_blank" rel="noopener">repo-name</a>
+            </div>
+            <div class="meta">
+                <span class="stars">★ 0</span>
+                <span class="updated">maj …</span>
+                <span class="visibility"></span>
+            </div>
+            <p class="desc"></p>
+            <div class="chips"></div>
+            <div class="footer"></div>
+        </article>
+    </template>
+
+    <script src="app.js" defer></script>
+</body>
+
+</html>

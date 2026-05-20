@@ -1,0 +1,30 @@
+Formicidae
+
+Sous-familles
+    Aneuretinae
+    Dolichoderinae
+    Formicinae
+    Myrmeciinae
+    Pseudomyrmecinae
+    Cerapachyinae
+    Ecitoninae
+    Leptanilloidinae
+    Aenictinae
+    Dorylinae
+    Aenictogitoninae
+    Apomyrminae
+    Leptanillinae
+    Amblyoponinae
+    Ponerinae
+    Ectatomminae
+    Heteroponerinae
+    Paraponerinae
+    Proceratiinae
+    Agroecomyrmecinae
+    Myrmicinae
+
+    Armaniinae
+    Sphecomyrminae
+    Brownimeciinae
+    Formiciinae
+    Paleosminthurinae

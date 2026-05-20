@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>galagain</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <pixel-container></pixel-container>
+    <div class="container">
+      <aside class="sidebar">
+        <div class="profile">
+          <img src="data/photo.png" class="profile-img" />
+        </div>
+        <div class="profile-name">
+          Calvin <span class="first-name">Galagain</span>
+        </div>
+        <div class="profession-box">AI Researcher & Engineer</div>
+        <hr class="separator" />
+
+        <div class="info-item">
+          <div class="icon"><i class="fas fa-envelope"></i></div>
+          <div class="details">
+            <span class="info-title">EMAIL</span>
+            <span class="info-text">calvin@galagain.com</span>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="icon"><i class="fas fa-calendar"></i></div>
+          <div class="details">
+            <span class="info-title">BIRTHDAY</span>
+            <span class="info-text">August 6, 2000</span>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="details">
+            <span class="info-title">LOCATION</span>
+            <span class="info-text">Paris, France</span>
+          </div>
+        </div>
+
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/calvin-galagain" target="_blank"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          <a href="https://www.instagram.com/calvgal" target="_blank"
+            ><i class="fab fa-instagram"></i
+          ></a>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <div class="content-title">
+          <h1>About Me</h1>
+          <div class="content-separator"></div>
+        </div>
+
+        <header class="navbar">
+          <nav>
+            <ul>
+              <li>
+                <a href="#" class="active"
+                  ><i class="fas fa-user"></i><span>About</span></a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><i class="fas fa-file-lines"></i><span>Resume</span></a
+                >
+              </li>
+              <!-- <li><a href="#">Project</a></li> -->
+              <li>
+                <a href="#"
+                  ><i class="fas fa-paper-plane"></i><span>Contact</span></a
+                >
+              </li>
+            </ul>
+          </nav>
+        </header>
+
+        <section class="about">
+          <div class="about-container">
+            <div class="about-content">
+              <p class="intro">
+                I'm a
+                <span class="highlight"
+                  >PhD student in Artificial Intelligence</span
+                >, deeply passionate about AI. My research focuses on
+                <strong>semantic SLAM</strong>, developing a new SLAM approach
+                optimized for <strong>embedded systems</strong>. I'm always
+                looking for ways to push the boundaries of AI in robotics.
+              </p>
+
+              <div class="about-boxes">
+                <div class="about-box">
+                  <i class="fas fa-robot"></i>
+                  <h3>AI & Research</h3>
+                  <p>
+                    I take on many AI projects to improve my skills in
+                    <strong>machine learning</strong> and
+                    <strong>computer vision</strong>.
+                  </p>
+                </div>
+
+                <div class="about-box">
+                  <i class="fas fa-bug"></i>
+                  <h3>Ants Enthusiast</h3>
+                  <p>
+                    Ant colonies fascinate me—their organization and
+                    problem-solving abilities even inspire AI algorithms!
+                  </p>
+                </div>
+
+                <div class="about-box tea-box">
+                  <div
+                    class="tea-icon-wrap"
+                    role="button"
+                    tabindex="0"
+                    aria-label="Trigger tea steam effect"
+                  >
+                    <div class="tea-smoke" aria-hidden="true">
+                      <span style="--i: 1"></span>
+                      <span style="--i: 6"></span>
+                      <span style="--i: 2"></span>
+                      <span style="--i: 8"></span>
+                      <span style="--i: 3"></span>
+                      <span style="--i: 7"></span>
+                      <span style="--i: 4"></span>
+                      <span style="--i: 9"></span>
+                    </div>
+                    <i class="fas fa-mug-hot"></i>
+                  </div>
+                  <h3>Tea Lover</h3>
+                  <p>
+                    Exploring different teas and cultures is my way to relax and
+                    think (about coding...).
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="resume">
+          <div class="section-header">
+            <div class="section-icon"><i class="fas fa-file-alt"></i></div>
+            <h2 class="section-title">Publications</h2>
+          </div>
+          <div class="section-separator"></div>
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+              <h4 class="timeline-item-title">
+                <em>Token-Space Mask Prediction for Efficient Vision Transformer Segmentation</em>
+              </h4>
+              <span class="timeline-date">
+                [CVPR EVW] (2026)
+              </span>
+              <p class="timeline-text">
+                <strong>Calvin Galagain</strong>, Martyna Poreba, François Goulette
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="timeline-item-title">
+                <em>LiPS: Lightweight Panoptic Segmentation for Resource-Constrained Robotics</em>
+              </h4>
+              <span class="timeline-date">
+                [arXiv] <a href="https://arxiv.org/abs/2604.00634" target="_blank" rel="noopener">arXiv:2604.00634</a> (2026)
+              </span>
+              <p class="timeline-text">
+                <strong>Calvin Galagain</strong>, Martyna Poreba, François Goulette, Cyrill Stachniss
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="timeline-item-title">
+                <em
+                  >Is Semantic SLAM Ready for Embedded Systems ? A Comparative
+                  Survey</em
+                >
+              </h4>
+              <span class="timeline-date">
+                [arXiv] <a href="https://arxiv.org/abs/2505.12384" target="_blank" rel="noopener">arXiv:2505.12384</a> (2025)
+              </span>
+              <p class="timeline-text">
+                <strong>Calvin Galagain</strong>, Martyna Poreba, François
+                Goulette
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="timeline-item-title">
+                <em
+                  >Optimizing Vision Transformers for Edge Deployment: Hybrid
+                  Token Reduction for Efficient Semantic Segmentation</em
+                >
+              </h4>
+              <span class="timeline-date"
+                >[EEAI] European Conference on EDGE AI Technologies and
+                Applications (2025)</span
+              >
+              <p class="timeline-text">
+                Mathilde Proust, Martyna Poreba,
+                <strong>Calvin Galagain</strong>, Michal Szczepanski, Karim
+                Haroun
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="timeline-item-title">
+                <em
+                  >Challenges and Performance of SLAM Algorithms on
+                  Resource-Constrained Devices</em
+                >
+              </h4>
+              <span class="timeline-date"
+                >[EEAI] European Conference on EDGE AI Technologies and
+                Applications (2025)</span
+              >
+              <p class="timeline-text">
+                <strong>Calvin Galagain</strong>, Martyna Poreba, François
+                Goulette
+              </p>
+            </li>
+          </ol>
+
+          <div class="section-header">
+            <div class="section-icon"><i class="fas fa-book"></i></div>
+            <h2 class="section-title">Education</h2>
+          </div>
+          <div class="section-separator"></div>
+          <ol class="timeline-list">
+            <li class="timeline-item">
+              <h4 class="timeline-item-title">
+                PhD student - CEA & ENSTA Paris
+              </h4>
+              <span class="timeline-date">Since 10/2023</span>
+              <p class="timeline-text">
+                PhD candidate in artificial intelligence and robotics, working
+                on SLAM algorithms in dynamic environments. My research focuses
+                on improving the management of moving objects in SLAM systems by
+                using semantic segmentation to filter these objects. The goal is
+                to develop solutions optimized for embedded systems with low
+                computational power, ensuring real-time execution.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="timeline-item-title">
+                M2 MVA (Mathématiques, Vision, Apprentissage)
+              </h4>
+              <span class="timeline-date">10/2022 - 07/2023</span>
+              <p class="timeline-text">
+                The MVA master's program is one of the most renowned artificial
+                intelligence programs in France. I worked on numerous topics
+                related to both the theory and applications of deep learning,
+                including computer vision, natural language processing (NLP),
+                and machine learning.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="timeline-item-title">ESIEE Paris</h4>
+              <span class="timeline-date">09/2020 - 07/2023</span>
+              <p class="timeline-text">
+                ESIEE Paris is an engineering school where I specialized in
+                artificial intelligence, data science, and electronics. I
+                developed expertise in machine learning, deep learning, and
+                statistical modeling while also gaining solid knowledge in
+                embedded systems.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="timeline-item-title">Saint Stanislas</h4>
+              <span class="timeline-date">09/2018 - 07/2020</span>
+              <p class="timeline-text">
+                This was an intensive preparatory program for France's
+                engineering schools. I studied advanced mathematics and physics
+                in great detail, which allowed me to develop strong
+                problem-solving and analytical skills.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="timeline-item-title">Baccalauréat S</h4>
+              <span class="timeline-date">2018</span>
+              <p class="timeline-text">Maths & Physics specialization.</p>
+            </li>
+          </ol>
+
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <h2 class="section-title">Teaching</h2>
+          </div>
+          <div class="section-separator"></div>
+          <ol class="timeline-list">
+            <li class="timeline-item">
+              <h4 class="timeline-item-title">
+                IN102: Introduction to C Programming
+              </h4>
+              <span class="timeline-date">ENSTA Paris</span>
+              <p class="timeline-text">
+                Course covering the fundamentals of C programming, including
+                memory management, pointers, data structures, and algorithmic
+                problem-solving.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="timeline-item-title">
+                IA101: Artificial Intelligence and Data
+              </h4>
+              <span class="timeline-date">ENSTA Paris</span>
+              <p class="timeline-text">
+                Introduction to artificial intelligence concepts, covering
+                supervised and unsupervised learning, fundamental ML models, and
+                data-driven decision-making.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="timeline-item-title">
+                IA307: GPGPU Programming for Machine Learning
+              </h4>
+              <span class="timeline-date">ENSTA Paris / Telecom Paris</span>
+              <p class="timeline-text">
+                Scientific course on GPGPU programming for deep learning, covering GPU hardware
+                architecture, memory management, reduction principles, the use of cuBLAS and
+                cuDNN, linear classification, deep and convolutional neural networks, as well as
+                cloud platforms and TPUs.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="timeline-item-title">NPM3D: 3D Point Clouds</h4>
+
+              <span class="timeline-date">M2 MVA</span>
+              <p class="timeline-text">
+                Course on 3D point cloud processing, including acquisition
+                methods, segmentation, registration, and deep learning-based
+                approaches for 3D scene understanding.
+              </p>
+            </li>
+          </ol>
+
+          <div class="section-header">
+            <div class="section-icon"><i class="fas fa-briefcase"></i></div>
+            <h2 class="section-title">Experience</h2>
+          </div>
+          <div class="section-separator"></div>
+          <ol class="timeline-list">
+            <li class="timeline-item">
+              <h4 class="timeline-item-title">Exwayz - AI Research Intern</h4>
+              <span class="timeline-date">04/2023 - 10/2023</span>
+              <p class="timeline-text">
+                Developed a real-time object detection and tracking system using
+                3D LiDAR data. Worked on SLAM algorithms and SLAM-GPS fusion
+                while managing data anisotropy to improve segmentation
+                efficiency without loss of accuracy. Implemented multi-object
+                tracking with dynamic bounding box estimation.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="timeline-item-title">ZRD - AI Research Intern</h4>
+              <span class="timeline-date">05/2022 - 09/2022</span>
+              <p class="timeline-text">
+                Research internship at the Zentrum für Recht und Digitalisierung
+                in Saarbrücken, focusing on legal implications of AI. Developed
+                a system for automatic real-time video analysis to detect
+                sensitive content in collaboration with the Prosecutor's Office.
+                Explored adversarial learning techniques to assess
+                vulnerabilities in deep neural networks.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="timeline-item-title">IRCGN - Research Project</h4>
+              <span class="timeline-date">11/2021 - 09/2022</span>
+              <p class="timeline-text">
+                Conducted research on Deepfake detection and face recognition
+                for forensic applications. Worked on facial resemblance
+                estimation between suspects and police video footage,
+                implementing deep learning models for landmark detection, data
+                augmentation, and deepfake decoding from scratch. Gained
+                critical insight into the research process and peer evaluation
+                methodologies.
+              </p>
+            </li>
+          </ol>
+        </section>
+
+        <!-- <section class="project">
+          <div class="project-container">
+            <div class="card">
+              <div class="card-header">
+                <div class="date">Feb, 2024</div>
+              </div>
+              <div class="card-body">
+                <h3>Myrmeciinae</h3>
+                <p>
+                  This project is a sports application that tracks strength
+                  training performance while also serving as a social network.
+                </p>
+              </div>
+              <div class="card-footer">
+                <a class="btn-read-more" target="_blank">in coming ...</a>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div class="date">Feb, 2024</div>
+              </div>
+              <div class="card-body">
+                <h3>Formicinae</h3>
+                <p>
+                  This project involves rebuilding a SLAM system from scratch in
+                  C++ for localization and mapping.
+                </p>
+              </div>
+              <div class="card-footer">
+                <a class="btn-read-more" target="_blank">in coming ...</a>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div class="date">Feb, 2024</div>
+              </div>
+              <div class="card-body">
+                <h3>Dolichoderinae</h3>
+                <p>
+                  This project focuses on visualizing and generating a
+                  state-of-the-art review based on research domains.
+                </p>
+              </div>
+              <div class="card-footer">
+                <a class="btn-read-more" target="_blank">in coming ...</a>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div class="date">Feb, 2024</div>
+              </div>
+              <div class="card-body">
+                <h3>Aneuretinae</h3>
+                <p>
+                  This project aims to minimize the total cost of purchasing
+                  Pokemon cards by optimizing both card prices and shipping
+                  costs across multiple vendors.
+                </p>
+              </div>
+              <div class="card-footer">
+                <a
+                  href="data/pokemon_optimization.pdf"
+                  class="btn-read-more"
+                  target="_blank"
+                  >Read more</a
+                >
+              </div>
+            </div>
+          </div>
+        </section> -->
+
+        <section class="contact">
+          <div class="map-container">
+            <div id="custom-map"></div>
+          </div>
+
+          <div class="contact-form">
+            <h3 class="form-title">Contact Form</h3>
+            <form id="contact-form">
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="from_name"
+                  placeholder="Full name"
+                  required
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  required
+                />
+              </div>
+              <textarea
+                name="message"
+                placeholder="Your message"
+                rows="5"
+                required
+              ></textarea>
+              <button type="submit" class="btn">Send Message</button>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="script.js"></script>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAurltvOVfxtM3OlydzYnsMcaoEdO-Z1Ac&callback=initMap"
+    ></script>
+  </body>
+</html>
