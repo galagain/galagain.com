@@ -457,6 +457,7 @@ body {
     linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent 38%),
     var(--box-color);
   padding: 22px;
+  align-self: start;
 }
 
 .form-heading {
@@ -564,6 +565,10 @@ body {
   margin: 0;
   font-size: 0.82rem;
   color: #bbb;
+}
+
+.form-status:empty {
+  display: none;
 }
 
 .form-status[data-status="success"] {
