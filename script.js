@@ -333,6 +333,8 @@ function initMap() {
     zoom: 14,
     center: location1,
     disableDefaultUI: true,
+    clickableIcons: false,
+    keyboardShortcuts: false,
     styles: [
       {
         featureType: "all",
