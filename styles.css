@@ -4,6 +4,7 @@
   --box-color: #333333;
   --text-color: white;
   --accent-color: #007acc;
+  --accent-rgb: 0, 122, 204;
   --border-color: #484848;
   --ff-poppins: "Poppins", sans-serif;
   --shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
@@ -70,7 +71,7 @@ body {
 
 .profile:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.25);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.25);
 }
 
 .profile-name {
@@ -358,7 +359,7 @@ body {
 
 .resume .section-header {
   --section-accent: var(--accent-color);
-  --section-accent-border: rgba(0, 122, 204, 0.55);
+  --section-accent-border: rgba(var(--accent-rgb), 0.55);
 }
 
 .resume .section-header .section-icon {
@@ -373,6 +374,11 @@ body {
 
 .resume .section-header .section-icon i {
   color: var(--section-accent);
+}
+
+.resume .publication-header {
+  --section-accent: #007acc;
+  --section-accent-border: rgba(0, 122, 204, 0.55);
 }
 
 .resume .education-header {
@@ -452,6 +458,8 @@ body {
 }
 
 .publication-timeline {
+  --publication-accent: #007acc;
+  --publication-accent-rgb: 0, 122, 204;
   padding-left: 30px;
 }
 
@@ -459,7 +467,7 @@ body {
   margin-left: 12px;
   padding: 15px 17px;
   border: 1px solid var(--border-color);
-  border-left-color: rgba(0, 122, 204, 0.55);
+  border-left-color: var(--publication-accent);
   border-radius: 8px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 58%),
@@ -483,7 +491,7 @@ body {
   left: -25px;
   width: 9px;
   height: 9px;
-  background: var(--accent-color);
+  background: var(--publication-accent);
   box-shadow: 0 0 0 3px var(--box-color);
 }
 
@@ -499,7 +507,7 @@ body {
 }
 
 .publication-timeline .timeline-item-title a:hover {
-  color: var(--accent-color);
+  color: var(--publication-accent);
 }
 
 .publication-timeline .timeline-date {
@@ -520,7 +528,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.045);
-  color: var(--accent-color);
+  color: var(--publication-accent);
   font-size: 0.76rem;
   font-weight: 600;
 }
@@ -530,7 +538,7 @@ body {
 }
 
 .publication-timeline .timeline-text strong {
-  color: var(--accent-color);
+  color: var(--publication-accent);
 }
 
 .publication-timeline .timeline-text {
@@ -723,7 +731,7 @@ body {
 .form-field textarea:focus {
   border-color: var(--accent-color);
   background: #202020;
-  box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.16);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.16);
 }
 
 .btn {
@@ -842,7 +850,7 @@ body {
 
 .tea-icon-wrap:focus-visible {
   border-radius: 999px;
-  box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.35);
+  box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.35);
 }
 
 .tea-smoke {
@@ -1113,8 +1121,8 @@ pixel-container {
     color: var(--text-color);
     background: linear-gradient(
       135deg,
-      rgba(0, 122, 204, 0.3),
-      rgba(0, 122, 204, 0.12)
+      rgba(var(--accent-rgb), 0.3),
+      rgba(var(--accent-rgb), 0.12)
     );
     transform: none;
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);

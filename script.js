@@ -199,6 +199,144 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+  const root = document.documentElement;
+  const resumeSection = document.querySelector(".resume");
+  const defaultAccent = "#007acc";
+  const accentStops = [
+    { selector: ".publication-header", color: "#007acc" },
+    { selector: ".education-header", color: "#a78bfa" },
+    { selector: ".teaching-header", color: "#39b889" },
+    { selector: ".experience-header", color: "#d69a4a" },
+  ]
+    .map((stop) => ({
+      element: document.querySelector(stop.selector),
+      color: hexToRgb(stop.color),
+    }))
+    .filter((stop) => stop.element);
+
+  if (!resumeSection || accentStops.length === 0) return;
+
+  let currentColor = hexToRgb(defaultAccent);
+  let animationFrame = null;
+
+  function hexToRgb(hex) {
+    const normalized = hex.replace("#", "");
+    const value = parseInt(normalized, 16);
+
+    return {
+      r: (value >> 16) & 255,
+      g: (value >> 8) & 255,
+      b: value & 255,
+    };
+  }
+
+  function mixColor(from, to, amount) {
+    return {
+      r: from.r + (to.r - from.r) * amount,
+      g: from.g + (to.g - from.g) * amount,
+      b: from.b + (to.b - from.b) * amount,
+    };
+  }
+
+  function smoothStep(value) {
+    return value * value * (3 - 2 * value);
+  }
+
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
+
+  function colorDistance(from, to) {
+    return (
+      Math.abs(from.r - to.r) +
+      Math.abs(from.g - to.g) +
+      Math.abs(from.b - to.b)
+    );
+  }
+
+  function applyAccentColor(color) {
+    const rounded = {
+      r: Math.round(color.r),
+      g: Math.round(color.g),
+      b: Math.round(color.b),
+    };
+
+    root.style.setProperty(
+      "--accent-color",
+      `rgb(${rounded.r}, ${rounded.g}, ${rounded.b})`
+    );
+    root.style.setProperty(
+      "--accent-rgb",
+      `${rounded.r}, ${rounded.g}, ${rounded.b}`
+    );
+  }
+
+  function getTargetAccent() {
+    if (resumeSection.classList.contains("hidden")) {
+      return hexToRgb(defaultAccent);
+    }
+
+    const markerY = window.scrollY + window.innerHeight * 0.45;
+    const stops = accentStops.map((stop) => ({
+      color: stop.color,
+      y: stop.element.getBoundingClientRect().top + window.scrollY,
+    }));
+
+    if (markerY <= stops[0].y) return stops[0].color;
+
+    for (let index = 0; index < stops.length - 1; index += 1) {
+      const current = stops[index];
+      const next = stops[index + 1];
+
+      if (markerY >= current.y && markerY <= next.y) {
+        const distance = next.y - current.y;
+        const transitionLength = Math.min(window.innerHeight * 0.28, distance * 0.45);
+        const transitionStart = next.y - transitionLength;
+
+        if (markerY < transitionStart) {
+          return current.color;
+        }
+
+        const progress = clamp(
+          (markerY - transitionStart) / transitionLength,
+          0,
+          1
+        );
+        return mixColor(current.color, next.color, smoothStep(progress));
+      }
+    }
+
+    return stops[stops.length - 1].color;
+  }
+
+  function updateAccentColor() {
+    animationFrame = null;
+    const targetColor = getTargetAccent();
+    currentColor = mixColor(currentColor, targetColor, 0.18);
+
+    if (colorDistance(currentColor, targetColor) < 1.2) {
+      currentColor = targetColor;
+    }
+
+    applyAccentColor(currentColor);
+
+    if (colorDistance(currentColor, targetColor) >= 1.2) {
+      requestAccentUpdate();
+    }
+  }
+
+  function requestAccentUpdate() {
+    if (animationFrame !== null) return;
+    animationFrame = requestAnimationFrame(updateAccentColor);
+  }
+
+  requestAccentUpdate();
+  window.addEventListener("scroll", requestAccentUpdate, { passive: true });
+  window.addEventListener("resize", requestAccentUpdate);
+  window.addEventListener("refreshReveal", requestAccentUpdate);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
   const teaBox = document.querySelector(".tea-box");
   const teaTrigger = document.querySelector(".tea-icon-wrap");
   if (!teaBox) return;
@@ -448,13 +586,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 class Pixel {
-  constructor(canvas, context, x, y, color, speed, delay) {
+  constructor(canvas, context, x, y, colorIndex, colorSource, speed, delay) {
     this.width = canvas.width;
     this.height = canvas.height;
     this.ctx = context;
     this.x = x;
     this.y = y;
-    this.color = color;
+    this.colorIndex = colorIndex;
+    this.colorSource = colorSource;
     this.speed = this.getRandomValue(0.005, 0.1) * speed;
     this.size = 0;
     this.sizeStep = Math.random() * 0.1;
@@ -474,7 +613,7 @@ class Pixel {
   }
 
   draw() {
-    this.ctx.fillStyle = this.color;
+    this.ctx.fillStyle = this.colorSource[this.colorIndex];
     this.ctx.fillRect(this.x, this.y, this.size, this.size);
   }
 
@@ -521,6 +660,8 @@ class PixelContainer extends HTMLElement {
     this.shadowroot.append(canvas);
     this.canvas = this.shadowroot.querySelector("canvas");
     this.ctx = this.canvas.getContext("2d");
+    this.colorVariations = [];
+    this.lastAccentColor = "";
     this.init();
     this.resizeObserver = new ResizeObserver(() => this.init());
     this.resizeObserver.observe(this);
@@ -539,34 +680,77 @@ class PixelContainer extends HTMLElement {
   }
 
   createPixels() {
+    this.updateColorVariations();
+
     for (let x = 0; x < this.canvas.width; x += 20) {
       for (let y = 0; y < this.canvas.height; y += 20) {
-        const baseColor = getComputedStyle(document.documentElement)
-          .getPropertyValue("--accent-color")
-          .trim();
-        const colorVariations = [
-          baseColor,
-          this.adjustBrightness(baseColor, 1.5),
-          this.adjustBrightness(baseColor, 0.6),
-        ];
-        const color =
-          colorVariations[Math.floor(Math.random() * colorVariations.length)];
+        const colorIndex = Math.floor(Math.random() * this.colorVariations.length);
         this.pixels.push(
-          new Pixel(this.canvas, this.ctx, x, y, color, 0.2, 300)
+          new Pixel(
+            this.canvas,
+            this.ctx,
+            x,
+            y,
+            colorIndex,
+            this.colorVariations,
+            0.2,
+            300
+          )
         );
       }
     }
   }
 
-  adjustBrightness(hex, factor) {
-    let r = parseInt(hex.substring(1, 3), 16) * factor;
-    let g = parseInt(hex.substring(3, 5), 16) * factor;
-    let b = parseInt(hex.substring(5, 7), 16) * factor;
-    return `rgb(${Math.min(255, r)}, ${Math.min(255, g)}, ${Math.min(255, b)})`;
+  getAccentColor() {
+    return getComputedStyle(document.documentElement)
+      .getPropertyValue("--accent-color")
+      .trim();
+  }
+
+  parseColor(color) {
+    if (color.startsWith("#")) {
+      const normalized = color.replace("#", "");
+      const value = parseInt(normalized, 16);
+
+      return {
+        r: (value >> 16) & 255,
+        g: (value >> 8) & 255,
+        b: value & 255,
+      };
+    }
+
+    const channels = color.match(/\d+(\.\d+)?/g)?.map(Number);
+
+    return {
+      r: channels?.[0] ?? 0,
+      g: channels?.[1] ?? 122,
+      b: channels?.[2] ?? 204,
+    };
+  }
+
+  adjustBrightness(color, factor) {
+    const { r, g, b } = this.parseColor(color);
+
+    return `rgb(${Math.min(255, r * factor)}, ${Math.min(
+      255,
+      g * factor
+    )}, ${Math.min(255, b * factor)})`;
+  }
+
+  updateColorVariations() {
+    const accentColor = this.getAccentColor();
+
+    if (accentColor === this.lastAccentColor) return;
+
+    this.lastAccentColor = accentColor;
+    this.colorVariations[0] = accentColor;
+    this.colorVariations[1] = this.adjustBrightness(accentColor, 1.5);
+    this.colorVariations[2] = this.adjustBrightness(accentColor, 0.6);
   }
 
   animate() {
     requestAnimationFrame(() => this.animate());
+    this.updateColorVariations();
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.pixels.forEach((pixel) => pixel.appear());
   }
