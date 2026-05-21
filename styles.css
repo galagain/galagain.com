@@ -417,6 +417,94 @@ body {
   margin-top: 5px;
 }
 
+.publication-timeline {
+  padding-left: 30px;
+}
+
+.publication-timeline .timeline-item {
+  margin-left: 12px;
+  padding: 15px 17px;
+  border: 1px solid var(--border-color);
+  border-left-color: rgba(0, 122, 204, 0.55);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 58%),
+    var(--box-color);
+}
+
+.publication-timeline .timeline-item:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.publication-timeline .timeline-item:not(:last-child)::before {
+  top: -47px;
+  left: -21px;
+  width: 1px;
+  height: calc(100% + 90px);
+  background: var(--border-color);
+}
+
+.publication-timeline .timeline-item::after {
+  top: 22px;
+  left: -25px;
+  width: 9px;
+  height: 9px;
+  background: var(--accent-color);
+  box-shadow: 0 0 0 3px var(--box-color);
+}
+
+.publication-timeline .timeline-item-title {
+  margin: 0 0 9px;
+  line-height: 1.4;
+}
+
+.publication-timeline .timeline-item-title a,
+.publication-timeline .timeline-item-title a:visited {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.publication-timeline .timeline-item-title a:hover {
+  color: var(--accent-color);
+}
+
+.publication-timeline .timeline-date {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  color: #c5d0da;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.publication-timeline .pub-venue {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 2px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--accent-color);
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.publication-timeline .pub-note {
+  color: #bbb;
+}
+
+.publication-timeline .timeline-text strong {
+  color: var(--accent-color);
+}
+
+.publication-timeline .timeline-text {
+  margin: 9px 0 0;
+  color: var(--text-color);
+  line-height: 1.55;
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
@@ -947,6 +1035,23 @@ pixel-container {
 
   .timeline-item {
     padding-left: 16px;
+  }
+
+  .publication-timeline {
+    padding-left: 30px;
+  }
+
+  .publication-timeline .timeline-item {
+    margin-left: 9px;
+    padding: 14px;
+  }
+
+  .publication-timeline .timeline-item:not(:last-child)::before {
+    left: -18px;
+  }
+
+  .publication-timeline .timeline-item::after {
+    left: -22px;
   }
 
   .contact-grid {
